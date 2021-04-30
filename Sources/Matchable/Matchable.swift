@@ -9,9 +9,6 @@ public protocol Matchable {
     func assertMatches(_ other: Self, in context: MatchableContext) throws
 }
 
-public protocol MatchableCompound: Matchable {
-    func assertContentMatches(_ other: Self, in context: MatchableContext) throws
-}
 
 public protocol MatchableContext {
     var file: StaticString { get }
@@ -109,13 +106,6 @@ public extension Matchable {
     }
 }
 
-public extension MatchableCompound {
-    func assertMatches(_ other: Self, in context: MatchableContext) throws {
-        try assertWrappedChecksMatch(of: other, in: context) {
-            try assertContentMatches(other, in: context)
-        }
-    }
-}
 
 public extension RawRepresentable where RawValue: Matchable {
     func assertMatches(_ other: Self, in context: MatchableContext) throws {

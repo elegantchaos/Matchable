@@ -50,12 +50,18 @@ _Note that currently if you pass a list of keys, they all have to resolve to mem
 
 The original motivating use-case for this protocol was unit testing, where it's often necessary to compare two instances of something, and useful to be able to identify the exact point of divergence.
 
-The fact that `Matchable` is different from `Equatable` is also an advantage here, as it allows both to co-exist. 
+Whilst I still see this as the primary use for the protocol, I have split it out into a standalone package as it may be helpful in other places. 
+
+The fact that `Matchable` is different from `Equatable` is an advantage for unit testing, as it allows both to co-exist. 
 
 In your code, you might define `Equatable` to only check part of a structure (a unique identifier, for example).
 
 This is good for efficiency in production code, but no use for test code where you really do want to know if all members are equal.
 
-In this situation you can define a thorough check with `Matchable`, without interfering with the efficient implemention of `Equatable`.
+In this situation you can define a thorough check with `Matchable`, and use that for unit testing, without interfering with the efficient implemention of `Equatable`.
 
-Initially this protocol was defined as part of my [XCTestExtensions](https://github.com/elegantchaos/XCTestExtensions) package. However, I realised that it might have wider application, so have now split it out into this package.
+Initially this protocol was defined as part of my [XCTestExtensions](https://github.com/elegantchaos/XCTestExtensions) package.
+
+That package includes some additions to `XCTAssert` which use `Matchable`. 
+
+These allow you obtain nice test failure reports when two structures fail to match, identifying the exact point of failure. Because of the way the match-failure errors get wrapped for compound structures, Xcode will show you test-failures at all levels, which can be very helpful when tracking down a mismatch.

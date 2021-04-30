@@ -8,6 +8,7 @@ import Foundation
 /// Check that two strings are equal.
 /// If the strings don't match, this function compares them line by line to produce a more accurate description of the place where they differ.
 /// It optionally ignores whitespace at the beginning/end of each line.
+
 extension String: Matchable {
     public func assertMatches(_ expected: String, in context: MatchableContext) throws {
         func failure(_ message: String) -> MatchFailedError<String> {
