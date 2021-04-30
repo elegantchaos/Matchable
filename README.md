@@ -12,18 +12,6 @@ It also allows the protocol to handle compound structures intelligently. If a ma
 
 The catching code can dig down into these compound errors to cleanly report exactly where the mismatch occurred.
 
-## Unit Testing
-
-The motivating use-case for this protocol is unit testing, where it's often necessary to compare two instances of something, and useful to be able to identify the exact point of divergence.
-
-The fact that `Matchable` is different from `Equatable` is also an advantage here, as it allows both to co-exist. 
-
-In your code, you might define `Equatable` to only check part of a structure (a unique identifier, for example).
-
-This is good for efficiency in production code, but no use for test code where you really do want to know if all members are equal.
-
-In this situation you can define a thorough check with `Matchable`, without interfering with the efficient implemention of `Equatable`.
-
 ## Usage
 
 You can check that two values match with:
@@ -57,3 +45,17 @@ This helps to keep down the amount of boiler-plate code to a minimum.
 
 _Note that currently if you pass a list of keys, they all have to resolve to members of the same type. Unfortunately this somewhat reduces the helpfulness of this method._
 
+
+## Unit Testing
+
+The original motivating use-case for this protocol was unit testing, where it's often necessary to compare two instances of something, and useful to be able to identify the exact point of divergence.
+
+The fact that `Matchable` is different from `Equatable` is also an advantage here, as it allows both to co-exist. 
+
+In your code, you might define `Equatable` to only check part of a structure (a unique identifier, for example).
+
+This is good for efficiency in production code, but no use for test code where you really do want to know if all members are equal.
+
+In this situation you can define a thorough check with `Matchable`, without interfering with the efficient implemention of `Equatable`.
+
+Initially this protocol was defined as part of my [XCTestExtensions](https://github.com/elegantchaos/XCTestExtensions) package. However, I realised that it might have wider application, so have now split it out into this package.
