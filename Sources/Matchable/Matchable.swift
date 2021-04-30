@@ -56,8 +56,7 @@ public struct MatchOptions: OptionSet {
         self.rawValue = rawValue
     }
 
-    static let ignoringWhitespace = Self(rawValue: 1 << 0)
-    
+    public static let ignoringWhitespace = Self(rawValue: 1 << 0)
     public static let `default`: MatchOptions = []
 }
 
