@@ -42,6 +42,12 @@ public struct MatchContext: MatchableContext {
     public let options: MatchOptions
     public let file: StaticString
     public let line: UInt
+
+    public init(options: MatchOptions, file: StaticString, line: UInt) {
+        self.options = options
+        self.file = file
+        self.line = line
+    }
 }
 
 public struct MatchOptions: OptionSet {
