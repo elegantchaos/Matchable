@@ -110,9 +110,9 @@ That package includes some additions to `XCTAssert` which use `Matchable` to let
 XCTAssert(savedModel, matches: reloadedModel)
 ```
 
-This assert method catches any errors and presents them in a nice way by calling `XCFail`, identifying the exact point of failure.
+This assert method catches any errors and presents them in a nice way by calling `XCTFail`, identifying the exact point of failure.
 
-Because of the way the match-failure errors are wrapped for compound structures, the method can call `XCFail` at all levels of the failure, which results in Xcode showing an error marker at all levels.
+Because of the way the match-failure errors are wrapped for compound structures, the method can call `XCTFail` at all levels of the failure, which results in Xcode showing an error marker at all levels.
 
 This can be helpful when tracking down a mismatch in a deeply nested structure.
 
