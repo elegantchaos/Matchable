@@ -22,13 +22,15 @@ The matchable protocol defines a way to compare two objects, structures or value
 
 Unlike the `Equatable` protocol, `Matchable` works by throwing an error when it encounters a mismatch.
 
-You can view this as an assertion-of-equality. For this reason, the primary method is named `assertMatches`.
+You can view this as an _assertion of equality_. For this reason, the primary method is named `assertMatches`.
 
-This makes for compact code since you don't need to write explicit return statements for every comparison.  
+This makes for compact code since you don't need to write explicit return statements for every failed comparison.  
 
-It also allows the protocol to handle compound structures intelligently. If a matching check of a structure fails on one of its members, the matchable code with wrap up the error thrown by the member, and throw another error from the structure.
+It also allows the protocol to handle compound structures intelligently. 
 
-The catching code can dig down into these compound errors to cleanly report exactly where the mismatch occurred.
+If a matching check of a structure fails on one of its members, the matchable code will wrap up the error thrown by the member, and throw another error from the structure.
+
+Any catching code can dig down into these compound errors to cleanly report exactly where the mismatch occurred.
 
 ## Usage
 
@@ -46,7 +48,11 @@ try double1.assertMatches(double2)
 try string1.assertMatches(string2)
 ```
 
-A type can implement matching by conforming to the `Matchable` protocol, and defining the `assertMatches` method. Inside this method it can perform the necessary checks. If it finds a failure, it can throw a `MatchFailedError` to report the mismatch.
+A type can implement matching by conforming to the `Matchable` protocol, and defining the `assertMatches` method. Inside this method it can perform the necessary checks. 
+
+If it finds a failure, it can throw a `MatchFailedError` to report the mismatch.
+
+Implementations of `assertMatches` are provided for most of the primitive types, and a few Foundation types (I've just done the ones I needed for now - pull requests gratefully received...). 
 
 ## Compound Types
 
