@@ -9,8 +9,8 @@ on: [push, pull_request]
 
 jobs:
 
-    macOS-swift-52:
-        name: macOS (Swift 5.2)
+    macOS-swift-51:
+        name: macOS (Swift 5.1)
         runs-on: macOS-latest
         steps:
         - name: Checkout
@@ -19,7 +19,7 @@ jobs:
           run: mkdir logs
         - name: Xcode Version
           run: |
-            sudo xcode-select -s /Applications/Xcode_11.4.app
+            sudo xcode-select -s /Applications/Xcode_11.3.1.app
             xcodebuild -version
             swift --version
         - name: Swift Version
@@ -27,7 +27,7 @@ jobs:
         - name: Build (Release)
           run: swift build -c release
         - name: Test (Release)
-          run: swift test --configuration release -Xswiftc -enable-testing --enable-test-discovery
+          run: swift test --configuration release -Xswiftc -enable-testing 
         - name: Upload Logs
           uses: actions/upload-artifact@v1
           if: always()
@@ -78,10 +78,10 @@ jobs:
             path: logs
 
 
-    linux-swift-52:
-        name: Linux (Swift 5.2)
+    linux-swift-51:
+        name: Linux (Swift 5.1)
         runs-on: ubuntu-18.04
-        container: swift:5.2.3-bionic
+        container: swift:5.1
         steps:
         - name: Checkout
           uses: actions/checkout@v1
@@ -92,7 +92,7 @@ jobs:
         - name: Build (Release)
           run: swift build -c release
         - name: Test (Release)
-          run: swift test --configuration release -Xswiftc -enable-testing --enable-test-discovery
+          run: swift test --configuration release -Xswiftc -enable-testing 
         - name: Upload Logs
           uses: actions/upload-artifact@v1
           if: always()
@@ -124,8 +124,8 @@ jobs:
             path: logs
 
 
-    xcode-swift-52:
-        name: Xcode (Swift 5.2)
+    xcode-swift-51:
+        name: Xcode (Swift 5.1)
         runs-on: macOS-latest
         steps:
         - name: Checkout
@@ -134,7 +134,7 @@ jobs:
           run: mkdir logs
         - name: Xcode Version
           run: |
-            sudo xcode-select -s /Applications/Xcode_11.4.app
+            sudo xcode-select -s /Applications/Xcode_11.3.1.app
             xcodebuild -version
             swift --version
         - name: XC Pretty
