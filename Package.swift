@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.9
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 //  Created by Sam Deane on 30/04/2021.
@@ -10,15 +10,14 @@ import PackageDescription
 let package = Package(
     name: "Matchable",
     platforms: [
-        .macOS(.v10_13), .iOS(.v10), .tvOS(.v10), .watchOS(.v6)
+        .macOS(.v10_13), .iOS(.v12), .tvOS(.v12), .watchOS(.v6), .visionOS(.v1),
     ],
     products: [
         .library(
             name: "Matchable",
-            targets: ["Matchable"]),
+            targets: ["Matchable"])
     ],
-    dependencies: [
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "Matchable",
