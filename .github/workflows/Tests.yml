@@ -103,7 +103,7 @@ jobs:
             source "setup.sh"
             echo "Testing workspace $WORKSPACE scheme $SCHEME."
             set -o pipefail
-            xcodebuild test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "name=iPhone 16" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-iOS-test-release.log | xcbeautify --quiet --disable-logging --renderer github-actions
+            xcodebuild test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "name=iPhone 14" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-iOS-test-release.log | xcbeautify --quiet --disable-logging --renderer github-actions
         - name: Detect Workspace & Scheme (tvOS)
           run: |
             WORKSPACE="Matchable.xcworkspace"
@@ -196,7 +196,7 @@ jobs:
             source "setup.sh"
             echo "Testing workspace $WORKSPACE scheme $SCHEME."
             set -o pipefail
-            xcodebuild test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "name=iPhone 16" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-iOS-test-release.log | xcbeautify --quiet --disable-logging --renderer github-actions
+            xcodebuild test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "name=iPhone 14" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-iOS-test-release.log | xcbeautify --quiet --disable-logging --renderer github-actions
         - name: Detect Workspace & Scheme (tvOS)
           run: |
             WORKSPACE="Matchable.xcworkspace"
