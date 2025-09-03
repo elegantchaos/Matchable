@@ -37,8 +37,8 @@ jobs:
             swift test --disable-xctest --configuration release | xcbeautify --quiet --disable-logging --renderer github-actions
 
 
-    macOS-swift62:
-        name: macOS (Swift 6.2)
+    macOS-swift61:
+        name: macOS (Swift 6.1)
         runs-on: macos-15
         steps:
         - name: Checkout
@@ -50,7 +50,7 @@ jobs:
         - name: Select Swift
           uses: beeauvin/swiftly-swift@v1
           with:
-            swift-version: "6.2-snapshot"
+            swift-version: "6.1"
         - name: Check Swift Version
           run: swift --version
         - name: Build (release)
@@ -83,19 +83,19 @@ jobs:
             swift --version
         - name: Detect Workspace & Scheme (iOS)
           run: |
-            WORKSPACE="Matchable.xcworkspace"
+            WORKSPACE="el.xcworkspace"
             if [[ ! -e "$WORKSPACE" ]]
             then
               WORKSPACE="."
-              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep Matchable-Package || true))
+              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep el-Package || true))
               if [[ $GOTPACKAGE != "" ]]
               then
-                SCHEME="Matchable-Package"
+                SCHEME="el-Package"
               else
-                SCHEME="Matchable"
+                SCHEME="el"
               fi
             else
-              SCHEME="Matchable-iOS"
+              SCHEME="el-iOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform iOS > logs/download-iOS.log" > setup.sh
         - name: Test (iOS Release)
@@ -106,19 +106,19 @@ jobs:
             xcodebuild test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "name=iPhone 16" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-iOS-test-release.log | xcbeautify --quiet --disable-logging --renderer github-actions
         - name: Detect Workspace & Scheme (tvOS)
           run: |
-            WORKSPACE="Matchable.xcworkspace"
+            WORKSPACE="el.xcworkspace"
             if [[ ! -e "$WORKSPACE" ]]
             then
               WORKSPACE="."
-              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep Matchable-Package || true))
+              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep el-Package || true))
               if [[ $GOTPACKAGE != "" ]]
               then
-                SCHEME="Matchable-Package"
+                SCHEME="el-Package"
               else
-                SCHEME="Matchable"
+                SCHEME="el"
               fi
             else
-              SCHEME="Matchable-tvOS"
+              SCHEME="el-tvOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform tvOS > logs/download-tvOS.log" > setup.sh
         - name: Test (tvOS Release)
@@ -129,19 +129,19 @@ jobs:
             xcodebuild test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "name=Apple TV 4K (3rd generation)" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-tvOS-test-release.log | xcbeautify --quiet --disable-logging --renderer github-actions
         - name: Detect Workspace & Scheme (watchOS)
           run: |
-            WORKSPACE="Matchable.xcworkspace"
+            WORKSPACE="el.xcworkspace"
             if [[ ! -e "$WORKSPACE" ]]
             then
               WORKSPACE="."
-              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep Matchable-Package || true))
+              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep el-Package || true))
               if [[ $GOTPACKAGE != "" ]]
               then
-                SCHEME="Matchable-Package"
+                SCHEME="el-Package"
               else
-                SCHEME="Matchable"
+                SCHEME="el"
               fi
             else
-              SCHEME="Matchable-watchOS"
+              SCHEME="el-watchOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform watchOS > logs/download-watchOS.log" > setup.sh
         - name: Build (watchOS release)
@@ -158,8 +158,8 @@ jobs:
             path: logs
 
 
-    xcode-swift62:
-        name: iOS/tvOS/watchOS (Swift 6.2, Xcode 26.0.0)
+    xcode-swift61:
+        name: iOS/tvOS/watchOS (Swift 6.1, Xcode 16.4.0)
         runs-on: macos-15
         steps:
         - name: Checkout
@@ -171,24 +171,24 @@ jobs:
         - name: Select Xcode Version
           run: |
             ls -d /Applications/Xcode* > logs/xcode-versions.log
-            sudo xcode-select -s /Applications/Xcode_26.0.0.app
+            sudo xcode-select -s /Applications/Xcode_16.4.0.app
             xcodebuild -version
             swift --version
         - name: Detect Workspace & Scheme (iOS)
           run: |
-            WORKSPACE="Matchable.xcworkspace"
+            WORKSPACE="el.xcworkspace"
             if [[ ! -e "$WORKSPACE" ]]
             then
               WORKSPACE="."
-              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep Matchable-Package || true))
+              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep el-Package || true))
               if [[ $GOTPACKAGE != "" ]]
               then
-                SCHEME="Matchable-Package"
+                SCHEME="el-Package"
               else
-                SCHEME="Matchable"
+                SCHEME="el"
               fi
             else
-              SCHEME="Matchable-iOS"
+              SCHEME="el-iOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform iOS > logs/download-iOS.log" > setup.sh
         - name: Test (iOS Release)
@@ -199,19 +199,19 @@ jobs:
             xcodebuild test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "name=iPhone 16" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-iOS-test-release.log | xcbeautify --quiet --disable-logging --renderer github-actions
         - name: Detect Workspace & Scheme (tvOS)
           run: |
-            WORKSPACE="Matchable.xcworkspace"
+            WORKSPACE="el.xcworkspace"
             if [[ ! -e "$WORKSPACE" ]]
             then
               WORKSPACE="."
-              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep Matchable-Package || true))
+              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep el-Package || true))
               if [[ $GOTPACKAGE != "" ]]
               then
-                SCHEME="Matchable-Package"
+                SCHEME="el-Package"
               else
-                SCHEME="Matchable"
+                SCHEME="el"
               fi
             else
-              SCHEME="Matchable-tvOS"
+              SCHEME="el-tvOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform tvOS > logs/download-tvOS.log" > setup.sh
         - name: Test (tvOS Release)
@@ -222,19 +222,19 @@ jobs:
             xcodebuild test -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "name=Apple TV 4K (3rd generation)" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-tvOS-test-release.log | xcbeautify --quiet --disable-logging --renderer github-actions
         - name: Detect Workspace & Scheme (watchOS)
           run: |
-            WORKSPACE="Matchable.xcworkspace"
+            WORKSPACE="el.xcworkspace"
             if [[ ! -e "$WORKSPACE" ]]
             then
               WORKSPACE="."
-              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep Matchable-Package || true))
+              GOTPACKAGE=$(xcodebuild -workspace . -list | (grep el-Package || true))
               if [[ $GOTPACKAGE != "" ]]
               then
-                SCHEME="Matchable-Package"
+                SCHEME="el-Package"
               else
-                SCHEME="Matchable"
+                SCHEME="el"
               fi
             else
-              SCHEME="Matchable-watchOS"
+              SCHEME="el-watchOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform watchOS > logs/download-watchOS.log" > setup.sh
         - name: Build (watchOS release)
