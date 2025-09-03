@@ -101,9 +101,18 @@ This is good for efficiency in production code, but no use for test code where y
 
 In this situation you can define a thorough check with `Matchable`, and use that for unit testing, without interfering with the efficient implemention of `Equatable`.
 
-Initially this protocol was defined as part of my [XCTestExtensions](https://github.com/elegantchaos/XCTestExtensions) package.
+### Swift Testing
 
-That package includes some additions to `XCTAssert` which use `Matchable` to let you perform matching checks:
+With Swift Testing, you can just marks your test method as `throws`, and then place a call to `try thing1.assertMatches(thing2)` into it.
+
+If the assertion fails, you'll see a relatively well formatted report showing where it went wrong.
+
+
+### XCTest
+
+Initially this protocol was defined as part of my [XCTestExtensions](https://github.com/elegantchaos/XCTestExtensions) package. 
+
+I've now pulled it out into this package, which XCTestExtensions uses to add some extensions to `XCTAssert`. These use `Matchable` to let you perform matching checks:
 
 ```
 XCTAssert(savedModel, matches: reloadedModel)
@@ -117,7 +126,7 @@ This can be helpful when tracking down a mismatch in a deeply nested structure.
 
 ## Future
 
-This is an early implementation, based on code pulled from elsewhere.
+This is an early implementation, based on code pulled from some of my other packages.
 
 The API probably needs tweaking, and the methods definitely need documenting.
 

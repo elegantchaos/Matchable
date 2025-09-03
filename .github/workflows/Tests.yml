@@ -173,7 +173,7 @@ jobs:
           uses: actions/upload-artifact@v4
           if: always()
           with:
-            name: logs
+            name: xcode-swift510-logs
             path: logs
 
 
@@ -289,6 +289,6 @@ jobs:
           uses: actions/upload-artifact@v4
           if: always()
           with:
-            name: logs
+            name: xcode-swift61-logs
             path: logs
 
