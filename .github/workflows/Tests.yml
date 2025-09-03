@@ -93,7 +93,7 @@ jobs:
             else
               SCHEME="Matchable-iOS"
             fi
-            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform iOS > logs/download-iOS.log" > setup.sh
+            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform iOS > logs/download-iOS.log; xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -showdestinations > logs/destinations-iOS.log" > setup.sh
         - name: Test (iOS Release)
           run: |
             source "setup.sh"
@@ -116,7 +116,7 @@ jobs:
             else
               SCHEME="Matchable-tvOS"
             fi
-            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform tvOS > logs/download-tvOS.log" > setup.sh
+            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform tvOS > logs/download-tvOS.log; xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -showdestinations > logs/destinations-tvOS.log" > setup.sh
         - name: Test (tvOS Release)
           run: |
             source "setup.sh"
@@ -139,7 +139,7 @@ jobs:
             else
               SCHEME="Matchable-visionOS"
             fi
-            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform visionOS > logs/download-visionOS.log" > setup.sh
+            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform visionOS > logs/download-visionOS.log; xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -showdestinations > logs/destinations-visionOS.log" > setup.sh
         - name: Test (visionOS Release)
           run: |
             source "setup.sh"
@@ -162,7 +162,7 @@ jobs:
             else
               SCHEME="Matchable-watchOS"
             fi
-            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform watchOS > logs/download-watchOS.log" > setup.sh
+            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform watchOS > logs/download-watchOS.log; xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -showdestinations > logs/destinations-watchOS.log" > setup.sh
         - name: Build (watchOS release)
           run: |
             source "setup.sh"
@@ -209,7 +209,7 @@ jobs:
             else
               SCHEME="Matchable-iOS"
             fi
-            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform iOS > logs/download-iOS.log" > setup.sh
+            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform iOS > logs/download-iOS.log; xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -showdestinations > logs/destinations-iOS.log" > setup.sh
         - name: Test (iOS Release)
           run: |
             source "setup.sh"
@@ -232,7 +232,7 @@ jobs:
             else
               SCHEME="Matchable-tvOS"
             fi
-            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform tvOS > logs/download-tvOS.log" > setup.sh
+            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform tvOS > logs/download-tvOS.log; xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -showdestinations > logs/destinations-tvOS.log" > setup.sh
         - name: Test (tvOS Release)
           run: |
             source "setup.sh"
@@ -255,7 +255,7 @@ jobs:
             else
               SCHEME="Matchable-visionOS"
             fi
-            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform visionOS > logs/download-visionOS.log" > setup.sh
+            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform visionOS > logs/download-visionOS.log; xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -showdestinations > logs/destinations-visionOS.log" > setup.sh
         - name: Test (visionOS Release)
           run: |
             source "setup.sh"
@@ -278,7 +278,7 @@ jobs:
             else
               SCHEME="Matchable-watchOS"
             fi
-            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform watchOS > logs/download-watchOS.log" > setup.sh
+            echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'; xcodebuild -downloadPlatform watchOS > logs/download-watchOS.log; xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -showdestinations > logs/destinations-watchOS.log" > setup.sh
         - name: Build (watchOS release)
           run: |
             source "setup.sh"
